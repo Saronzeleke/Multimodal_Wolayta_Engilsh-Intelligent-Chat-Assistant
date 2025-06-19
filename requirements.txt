@@ -7,3 +7,4 @@ pydub
 openai
 pandas
 numpy
+torch
