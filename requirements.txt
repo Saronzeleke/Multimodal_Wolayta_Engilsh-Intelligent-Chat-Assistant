@@ -1,1 +1,9 @@
 transformers
+sentencepiece
+streamlit
+gtts
+speechrecognition
+pydub
+openai
+pandas
+numpy
