@@ -1,0 +1,1 @@
+from tranformers import MarianMTModel,MarianTokenizer
