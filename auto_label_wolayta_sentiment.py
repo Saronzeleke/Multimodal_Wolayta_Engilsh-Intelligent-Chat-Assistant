@@ -27,7 +27,7 @@ def main():
     logger.info("Loading Hugging Face English sentiment pipeline")
     sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
 
-    # Batch size for inference (adjust for memory/speed tradeoff)
+
     batch_size = 64
     labels = []
 
