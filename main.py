@@ -6,3 +6,12 @@ translated = translate(source_text, source_lang="en", target_lang="am")
 
 print(f"Original: {source_text}")
 print(f"Translated: {translated}")
+from app.voice.pipeline import voice_translate_pipeline
+
+if __name__ == "__main__":
+    import os
+    input_audio = "assets/sample_wolaytta.wav"
+    if not os.path.exists(input_audio):
+        print(f"[ERROR] File not found: {input_audio}")
+    else:
+        voice_translate_pipeline(input_audio)
