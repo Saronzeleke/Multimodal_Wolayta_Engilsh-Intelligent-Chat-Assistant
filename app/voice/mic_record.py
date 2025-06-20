@@ -2,8 +2,8 @@ import pyaudio
 import wave
 
 def record_audio(output_file: str = "assets/recorded.wav", duration: int = 5, rate: int = 16000) -> None:
-    chunk = 1024  # Record in chunks of 1024 samples
-    format = pyaudio.paInt16  # 16-bit resolution
+    chunk = 1024 
+    format = pyaudio.paInt16  
     channels = 1  # Mono
 
     audio = pyaudio.PyAudio()
