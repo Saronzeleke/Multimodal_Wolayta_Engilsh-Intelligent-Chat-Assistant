@@ -46,8 +46,7 @@ def main():
 
     # Keep  text and label for training
     labeled_df = df[["Wolayta", "English", "label"]].rename(columns={"Wolayta": "text"})
-
-
+    labeled_df=labeled_df.dropna(subset=["text","label"])
     logger.info(f"Saving labeled dataset to {OUTPUT_CSV}")
     os.makedirs(os.path.dirname(OUTPUT_CSV), exist_ok=True)
     labeled_df.to_csv(OUTPUT_CSV, index=False)
