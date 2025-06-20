@@ -11,7 +11,8 @@ OUTPUT_CSV = "data/wolayta_sentiment_labeled.csv"
 # Mapping Hugging Face sentiment outputs to your label scheme
 HF_TO_CUSTOM_LABEL = {
     "POSITIVE": "positive",
-    "NEGATIVE": "negative"
+    "NEGATIVE": "negative",
+    "NEUTRAL":"neutral"
 }
 
 def map_label(hf_label):
