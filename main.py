@@ -22,7 +22,7 @@ if __name__ == "__main__":
     record_audio("assets/recorded.wav", duration=5)
 
     # Step 2: Run pipeline on recorded audio
-    input_audio = "assets/recorded.wav"
+ 
     if not os.path.exists(input_audio):
         print(f"[ERROR] File not found: {input_audio}")
     else:
