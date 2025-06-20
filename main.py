@@ -1,5 +1,5 @@
 from app.translation.translation import translate
-from app.voice.pipeline import voice_translate_pipeline
+from app.voice.pipline import voice_translate_pipeline
 source_text = "How are you today?"
 translated = translate(source_text, source_lang="en", target_lang="am")
 
