@@ -14,8 +14,6 @@ if __name__ == "__main__":
         print(f"[ERROR] File not found: {input_audio}")
     else:
         voice_translate_pipeline(input_audio)
-        from app.voice.pipeline import voice_translate_pipeline
-
 
 if __name__ == "__main__":
     import os
