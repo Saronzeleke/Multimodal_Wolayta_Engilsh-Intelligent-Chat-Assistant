@@ -6,6 +6,7 @@ from transformers import (
 )
 import torch
 import os
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 # Configuration
 MODEL_NAME = "distilbert-base-multilingual-cased"
