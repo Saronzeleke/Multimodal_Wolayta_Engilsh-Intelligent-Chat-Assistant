@@ -19,7 +19,7 @@ if __name__ == "__main__":
     import os
 
     # Step 1: Record audio via mic
-    record_audio("assets/recorded.wav", duration=5)
+    
 
     # Step 2: Run pipeline on recorded audio
  
