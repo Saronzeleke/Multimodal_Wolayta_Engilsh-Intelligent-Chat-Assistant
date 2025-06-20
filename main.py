@@ -1,4 +1,4 @@
-from app.translation import translate
+from app.translation.translation import translate
 
 # Try translating from English → Amharic as a placeholder
 source_text = "How are you today?"
