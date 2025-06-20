@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-INPUT_CSV = "data/wolayta_english.csv"  
+INPUT_CSV = "data/wolayta.csv"  
 OUTPUT_CSV = "data/wolayta_sentiment_labeled.csv"
 
 HF_TO_CUSTOM_LABEL = {
