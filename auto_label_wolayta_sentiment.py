@@ -2,8 +2,6 @@ import pandas as pd
 from transformers import pipeline
 import os
 import logging
-
-# Set up logging for better tracking
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
