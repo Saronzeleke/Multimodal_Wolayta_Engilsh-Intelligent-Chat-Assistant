@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 INPUT_CSV = "data/wolayta_english.csv"  
 OUTPUT_CSV = "data/wolayta_sentiment_labeled.csv"
 
-# Mapping Hugging Face sentiment outputs to your label scheme
+# Mapping Hugging Face sentiment outputs to  label scheme
 HF_TO_CUSTOM_LABEL = {
     "POSITIVE": "positive",
     "NEGATIVE": "negative",
