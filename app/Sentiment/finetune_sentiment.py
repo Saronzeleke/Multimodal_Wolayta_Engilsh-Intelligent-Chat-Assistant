@@ -5,7 +5,7 @@ from transformers import (
     TrainingArguments, Trainer, DataCollatorWithPadding
 )
 import torch
-import os
+
 MODEL_NAME = "distilbert-base-multilingual-cased"
 DATA_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\wolayta_sentiment_labeled.csv"
 MODEL_DIR = "models/sentiment_model"
