@@ -9,7 +9,7 @@ print(f"Translated: {translated}")
 
 if __name__ == "__main__":
     import os
-    input_audio = "assets/sample_wolaytta.wav"
+      input_audio = "assets/recorded.wav"
     if not os.path.exists(input_audio):
         print(f"[ERROR] File not found: {input_audio}")
     else:
