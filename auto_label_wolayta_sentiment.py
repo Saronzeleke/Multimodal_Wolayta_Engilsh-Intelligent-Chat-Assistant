@@ -21,8 +21,8 @@ def main():
     logger.info(f"Loading dataset from {INPUT_CSV}")
     df = pd.read_csv(INPUT_CSV)
 
-    if not {"Wolayta", "English"}.issubset(df.columns):
-        raise ValueError("Input CSV must have 'Wolayta' and 'English' columns")
+    if not {"Wolaytta", "English"}.issubset(df.columns):
+        raise ValueError("Input CSV must have 'Wolaytta' and 'English' columns")
 
     # Initialize Hugging Face sentiment-analysis pipeline
     logger.info("Loading Hugging Face English sentiment pipeline")
