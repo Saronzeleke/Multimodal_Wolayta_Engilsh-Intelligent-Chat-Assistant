@@ -33,7 +33,6 @@ def main():
 
     logger.info(f"Labeling {len(df)} sentences in batches of {batch_size}")
 
-    # Run sentiment analysis in batches for speed
     for start_idx in range(0, len(df), batch_size):
         batch_texts = df["English"].iloc[start_idx:start_idx + batch_size].tolist()
         results = sentiment_analyzer(batch_texts)
