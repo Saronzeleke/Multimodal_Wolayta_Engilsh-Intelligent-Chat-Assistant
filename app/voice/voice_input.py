@@ -1,6 +1,6 @@
 import speech_recognition as sr
 
-ASR_LANGUAGE_CODE = "wal-en"  # Adjust to 'am-ET' or 'wal' if needed
+ASR_LANGUAGE_CODE = "wal-ET"  # Adjust to 'am-ET' or 'wal' if needed
 
 def transcribe_audio(audio_path: str, language: str = ASR_LANGUAGE_CODE) -> str:
     recognizer = sr.Recognizer()
