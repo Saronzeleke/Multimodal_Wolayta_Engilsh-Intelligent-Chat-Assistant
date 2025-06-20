@@ -49,7 +49,7 @@ def main():
     # Attach labels to Wolayta sentences
     df["label"] = labels
 
-    # Keep only Wolayta text and label for training
+    # Keep  text and label for training
     labeled_df = df[["Wolayta", "English", "label"]].rename(columns={"Wolayta": "text"})
 
     # Save labeled dataset
