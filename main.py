@@ -13,3 +13,18 @@ if __name__ == "__main__":
         print(f"[ERROR] File not found: {input_audio}")
     else:
         voice_translate_pipeline(input_audio)
+        from app.voice.pipeline import voice_translate_pipeline
+from app.voice.mic_record import record_audio
+
+if __name__ == "__main__":
+    import os
+
+    # Step 1: Record audio via mic
+    record_audio("assets/recorded.wav", duration=5)
+
+    # Step 2: Run pipeline on recorded audio
+    input_audio = "assets/recorded.wav"
+    if not os.path.exists(input_audio):
+        print(f"[ERROR] File not found: {input_audio}")
+    else:
+        voice_translate_pipeline(input_audio)
