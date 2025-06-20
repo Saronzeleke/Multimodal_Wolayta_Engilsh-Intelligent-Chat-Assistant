@@ -1,5 +1,6 @@
 from app.translation.translation import translate
 from app.voice.pipline import voice_translate_pipeline
+from app.voice.mic_record import record_audio
 source_text = "How are you today?"
 translated = translate(source_text, source_lang="en", target_lang="am")
 
@@ -14,7 +15,7 @@ if __name__ == "__main__":
     else:
         voice_translate_pipeline(input_audio)
         from app.voice.pipeline import voice_translate_pipeline
-from app.voice.mic_record import record_audio
+
 
 if __name__ == "__main__":
     import os
