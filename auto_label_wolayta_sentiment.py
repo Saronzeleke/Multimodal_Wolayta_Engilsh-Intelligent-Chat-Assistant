@@ -5,8 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Input and output file paths
-INPUT_CSV = "data/wolayta_english.csv"  # CSV with columns: Wolayta, English
+INPUT_CSV = "data/wolayta_english.csv"  
 OUTPUT_CSV = "data/wolayta_sentiment_labeled.csv"
 
 # Mapping Hugging Face sentiment outputs to your label scheme
