@@ -7,7 +7,7 @@ from transformers import (
 import torch
 import os
 MODEL_NAME = "distilbert-base-multilingual-cased"
-DATA_PATH = "data/wolaytta_sentiment_labeled.csv"
+DATA_PATH = "data/wolayt.csv"
 MODEL_DIR = "models/sentiment_model"
 NUM_LABELS = 3
 LABEL_MAP = {"negative": 0, "neutral": 1, "positive": 2}
