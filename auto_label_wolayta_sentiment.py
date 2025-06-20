@@ -24,7 +24,6 @@ def main():
     if not {"Wolaytta", "English"}.issubset(df.columns):
         raise ValueError("Input CSV must have 'Wolaytta' and 'English' columns")
 
-    # Initialize Hugging Face sentiment-analysis pipeline
     logger.info("Loading Hugging Face English sentiment pipeline")
     sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
 
