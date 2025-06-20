@@ -7,6 +7,7 @@ from transformers import (
 import torch
 import os
 # Configuration
+os.makedirs(MODEL_DIR, exist_ok=True)
 MODEL_NAME = "distilbert-base-multilingual-cased"
 DATA_PATH = "data/wolaytta_sentiment_labeled.csv"
 MODEL_DIR = "models/sentiment_model"
