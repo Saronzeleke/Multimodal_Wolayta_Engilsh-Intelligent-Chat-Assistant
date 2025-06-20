@@ -45,8 +45,7 @@ def main():
         labels.extend(batch_labels)
 
         logger.info(f"Labeled batch {start_idx} to {start_idx + len(batch_texts) - 1}")
-
-    # Attach labels to Wolayta sentences
+        
     df["label"] = labels
 
     # Keep  text and label for training
