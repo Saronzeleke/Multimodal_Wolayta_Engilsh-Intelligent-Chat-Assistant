@@ -15,7 +15,6 @@ HF_TO_CUSTOM_LABEL = {
 }
 
 def map_label(hf_label):
-    # Default to neutral if unknown
     return HF_TO_CUSTOM_LABEL.get(hf_label.upper(), "neutral")
 
 def main():
