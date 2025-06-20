@@ -1,21 +1,13 @@
 from transformers import MarianMTModel, MarianTokenizer
+import torch
 
-# Use Amharic-English as a proxy for Wolaytta for now
-MODEL_NAME = "Helsinki-NLP/opus-mt-en-am"
+TRANSLATION_MODEL_NAME = "Helsinki-NLP/opus-mt-en-am"
+tokenizer = MarianTokenizer.from_pretrained(TRANSLATION_MODEL_NAME)
+model = MarianMTModel.from_pretrained(TRANSLATION_MODEL_NAME)
+model.eval()
 
-tokenizer = MarianTokenizer.from_pretrained(MODEL_NAME)
-model = MarianMTModel.from_pretrained(MODEL_NAME)
-
-def translate(text: str, source_lang="en", target_lang="am") -> str:
-    if not text:
-        return ""
-
-    # Tokenize input text
-    tokens = tokenizer(text, return_tensors="pt", padding=True)
-
-    # Generate translation
-    translated_tokens = model.generate(**tokens)
-
-    # Decode to human-readable string
-    result = tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
-    return result
+def translate_text(text: str) -> str:
+    batch = tokenizer([text], return_tensors="pt", padding=True, truncation=True)
+    with torch.no_grad():
+        generated_ids = model.generate(**batch)
+    return tokenizer.decode(generated_ids[0], skip_special_tokens=True)
