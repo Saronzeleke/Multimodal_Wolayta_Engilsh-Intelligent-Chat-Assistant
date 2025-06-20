@@ -77,5 +77,5 @@ def train_sentiment_model():
 
 if __name__ == "__main__":
     if not torch.cuda.is_available():
-        print("⚠️ CUDA not available. Using CPU. (Training will be slower)")
+        print("⚠️ CUDA not available. Using CPU.")
     train_sentiment_model()
