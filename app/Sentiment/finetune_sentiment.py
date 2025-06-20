@@ -52,8 +52,8 @@ def train_sentiment_model():
         num_train_epochs=3,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        evaluation_strategy="epoch",
-        save_strategy="epoch",
+        #evaluation_strategy="epoch",
+        #save_strategy="epoch",
         logging_steps=20,
         report_to="none"
     )
