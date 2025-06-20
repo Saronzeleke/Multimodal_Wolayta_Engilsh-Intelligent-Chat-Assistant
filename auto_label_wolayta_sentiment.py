@@ -50,7 +50,7 @@ def main():
     df["label"] = labels
 
     # Keep only Wolayta text and label for training
-    labeled_df = df[["Wolayta", "label"]].rename(columns={"Wolayta": "text"})
+    labeled_df = df[["Wolayta", "English", "label"]].rename(columns={"Wolayta": "text"})
 
     # Save labeled dataset
     logger.info(f"Saving labeled dataset to {OUTPUT_CSV}")
