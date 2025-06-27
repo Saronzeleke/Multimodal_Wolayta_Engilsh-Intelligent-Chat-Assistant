@@ -54,8 +54,6 @@ training_args = Seq2SeqTrainingArguments(
     fp16=torch.cuda.is_available(),
     logging_steps=20
 )
-
-# Data collator
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 trainer = Seq2SeqTrainer(
     model=model,
