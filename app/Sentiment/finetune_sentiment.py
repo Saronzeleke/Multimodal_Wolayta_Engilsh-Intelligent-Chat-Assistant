@@ -10,8 +10,6 @@ DATA_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assista
 MODEL_DIR = "models/sentiment_model"
 NUM_LABELS = 3
 LABEL_MAP = {"negative": 0, "neutral": 1, "positive": 2}
-
-# Load and preprocess data
 def load_dataset_from_csv(path):
     df = pd.read_csv(path)
     df = df[df['label'].isin(LABEL_MAP.keys())].copy()
