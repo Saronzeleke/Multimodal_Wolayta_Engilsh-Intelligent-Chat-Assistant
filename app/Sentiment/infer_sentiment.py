@@ -4,8 +4,6 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch.nn.functional as F
 MODEL_DIR = "models/sentiment_model"
 LABELS = ["negative", "neutral", "positive"]
-
-# Load tokenizer and model
 print("📦 Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
 model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
