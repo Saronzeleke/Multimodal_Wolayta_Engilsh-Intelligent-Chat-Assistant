@@ -37,8 +37,6 @@ def main():
         logger.info(f"Labeled samples {start} to {start + len(batch) - 1}")
 
     df["label"] = labels
-
-    # Save the resulting dataset
     labeled = df[["Wolaytta", "English", "label"]].rename(columns={"Wolaytta": "text"})
     os.makedirs(os.path.dirname(OUTPUT_CSV), exist_ok=True)
     labeled.to_csv(OUTPUT_CSV, index=False)
