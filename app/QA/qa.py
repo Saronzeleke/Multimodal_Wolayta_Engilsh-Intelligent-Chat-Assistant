@@ -100,8 +100,6 @@ def retrieve_chunks(question, k=TOP_K):
 def generate_answer(question, lang="en"):
     if not question.strip():
         return "Please enter a valid question."
-
-    # Translate question to English if needed
     if lang != "en":
         question_en = translate(question, source_lang=lang, target_lang="en")
     else:
