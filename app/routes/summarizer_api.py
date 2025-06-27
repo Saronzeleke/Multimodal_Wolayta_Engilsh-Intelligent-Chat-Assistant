@@ -14,8 +14,6 @@ try:
     model.eval()
 except Exception as e:
     raise RuntimeError(f"Failed to load summarization model: {e}")
-
-# Request schema
 class SummarizationRequest(BaseModel):
     text: str
     src_lang: str = SRC_LANG
