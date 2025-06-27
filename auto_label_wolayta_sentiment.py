@@ -11,7 +11,16 @@ OUTPUT_CSV =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assista
 
 def main():
     logger.info(f"Loading dataset from {INPUT_CSV}")
-    df = pd.read_csv(INPUT_CSV)
+    df = pd.read_csv(
+    INPUT_CSV,
+    sep=',',               # or ';' if that's your delimiter
+    engine='python',
+    usecols=["Wolaytta", "English"],
+    on_bad_lines='skip',
+    encoding='utf-8'
+)
+
+
 
     if not {"Wolaytta", "English"}.issubset(df.columns):
         raise ValueError("CSV must contain 'Wolaytta' and 'English' columns")
