@@ -17,10 +17,6 @@ def load_dataset_from_csv(path):
     df = df[df['label'].isin(LABEL_MAP.keys())].copy()
     df['label_id'] = df['label'].map(LABEL_MAP)
     return Dataset.from_pandas(df[['text', 'label_id']].dropna())
-
-# ------------------------------
-# -- Step 2: Tokenize Dataset --
-# ------------------------------
 def tokenize_dataset(dataset, tokenizer):
     def preprocess(examples):
         return tokenizer(examples['text'], truncation=True, padding=True, max_length=128)
