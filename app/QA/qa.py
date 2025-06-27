@@ -154,8 +154,7 @@ def generate_answer(question, lang="en"):
 # === 6. FastAPI API ===
 class QuestionRequest(BaseModel):
     question: str
-    lang: str = "en"  # default is English, user can specify "woly" or others
-
+    lang: str = "en" 
 router = APIRouter()
 
 @router.post("/qa")
