@@ -18,8 +18,6 @@ class SummarizationRequest(BaseModel):
     text: str
     src_lang: str = SRC_LANG
     tgt_lang: str = TGT_LANG
-
-# POST endpoint
 @router.post("/summarize/")
 async def summarize_text(payload: SummarizationRequest):
     try:
