@@ -40,8 +40,6 @@ def preprocess(example):
     return model_inputs
 
 tokenized_dataset = dataset.map(preprocess, batched=True)
-
-# Training arguments
 training_args = Seq2SeqTrainingArguments(
     output_dir=SAVE_DIR,
     per_device_train_batch_size=8,
