@@ -1,6 +1,6 @@
 import os
 import logging
-%pip installimport pandas as pd
+import pandas as pd
 %pip install transformers from transformers import pipeline
 
 logging.basicConfig(level=logging.INFO)
