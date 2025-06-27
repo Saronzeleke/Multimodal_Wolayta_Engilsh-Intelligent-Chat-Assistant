@@ -18,8 +18,6 @@ SAVE_DIR = "models/summarization_model"
 # Load dataset
 df = pd.read_csv(DATA_PATH)
 df = df.dropna(subset=["text", "summary"])
-
-# Add prefix as T5 expects
 df["input"] = "summarize: " + df["text"]
 df["target"] = df["summary"]
 dataset = Dataset.from_pandas(df[["input", "target"]])
