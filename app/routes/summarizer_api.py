@@ -7,8 +7,6 @@ MODEL_NAME = "facebook/mbart-large-50-many-to-many-mmt"
 SRC_LANG = "en_XX"
 TGT_LANG = "en_XX"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# Load model and tokenizer once at startup
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=False)
     tokenizer.src_lang = SRC_LANG
