@@ -28,8 +28,6 @@ def main():
     for start in range(0, len(df), batch_size):
         batch = df["English"].iloc[start:start + batch_size].tolist()
         results = sentiment(batch)
-
-        # Choose the highest scoring label per sentence
         for res in results:
             label = max(res, key=lambda x: x["score"])["label"].lower()
             labels.append(label)
