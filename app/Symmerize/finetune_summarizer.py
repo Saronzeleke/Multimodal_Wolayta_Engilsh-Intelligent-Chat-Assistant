@@ -14,8 +14,6 @@ from transformers import (
 DATA_PATH = "data/wolayta_summarization.csv"
 MODEL_NAME = "t5-small"
 SAVE_DIR = "models/summarization_model"
-
-# Load dataset
 df = pd.read_csv(DATA_PATH)
 df = df.dropna(subset=["text", "summary"])
 df["input"] = "summarize: " + df["text"]
