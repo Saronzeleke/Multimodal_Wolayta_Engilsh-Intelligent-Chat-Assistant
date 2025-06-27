@@ -14,9 +14,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 def predict_sentiment(text):
-    # Tokenize and prepare input
     inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128).to(device)
-
     with torch.no_grad():
         outputs = model(**inputs)
         logits = outputs.logits
