@@ -84,8 +84,6 @@ else:
 
 # === 5. RAG Answer Generation ===
 client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
-
-# Load or initialize QA history
 if os.path.exists(QA_HISTORY_PATH):
     with open(QA_HISTORY_PATH, "rb") as f:
         qa_history = pickle.load(f)
