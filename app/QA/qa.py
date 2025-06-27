@@ -27,10 +27,6 @@ QA_LOG_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assist
 EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 TOP_K = 3
 
-
-
-
-# === Logging ===
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("QA-RAG")
 def extract_text_from_pdf(pdf_path):
