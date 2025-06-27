@@ -139,8 +139,6 @@ def generate_answer(question, lang="en"):
         with open(QA_LOG_PATH, "a", newline='', encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow([question, answer])
-
-        # Save to history
         qa_history.append({"question": question, "answer": answer, "lang": lang})
         with open(QA_HISTORY_PATH, "wb") as f:
             pickle.dump(qa_history, f)
