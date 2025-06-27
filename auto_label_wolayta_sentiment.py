@@ -1,54 +1,48 @@
-import pandas as pd
-from transformers import pipeline
 import os
 import logging
+import pandas as pd
+from transformers import pipeline
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-INPUT_CSV = "data/wolayta.csv"  
+INPUT_CSV = "data/wolayta.csv"
 OUTPUT_CSV = "data/wolayta_sentiment_labeled.csv"
-
-HF_TO_CUSTOM_LABEL = {
-    "POSITIVE": "positive",
-    "NEGATIVE": "negative",
-    "NEUTRAL":"neutral"
-}
-
-def map_label(hf_label):
-    return HF_TO_CUSTOM_LABEL.get(hf_label.upper(), "neutral")
 
 def main():
     logger.info(f"Loading dataset from {INPUT_CSV}")
     df = pd.read_csv(INPUT_CSV)
 
     if not {"Wolaytta", "English"}.issubset(df.columns):
-        raise ValueError("Input CSV must have 'Wolaytta' and 'English' columns")
+        raise ValueError("CSV must contain 'Wolaytta' and 'English' columns")
 
-    logger.info("Loading Hugging Face English sentiment pipeline")
-    sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+    logger.info("Initializing 3-class sentiment pipeline")
+    sentiment = pipeline(
+        "text-classification",
+        model="j-hartmann/sentiment-roberta-large-english-3-classes",
+        return_all_scores=True
+    )
 
-
-    batch_size = 64
     labels = []
+    batch_size = 64
+    for start in range(0, len(df), batch_size):
+        batch = df["English"].iloc[start:start + batch_size].tolist()
+        results = sentiment(batch)
 
-    logger.info(f"Labeling {len(df)} sentences in batches of {batch_size}")
+        # Choose the highest scoring label per sentence
+        for res in results:
+            label = max(res, key=lambda x: x["score"])["label"].lower()
+            labels.append(label)
 
-    for start_idx in range(0, len(df), batch_size):
-        batch_texts = df["English"].iloc[start_idx:start_idx + batch_size].tolist()
-        results = sentiment_analyzer(batch_texts)
+        logger.info(f"Labeled samples {start} to {start + len(batch) - 1}")
 
-        batch_labels = [map_label(res["label"]) for res in results]
-        labels.extend(batch_labels)
-
-        logger.info(f"Labeled batch {start_idx} to {start_idx + len(batch_texts) - 1}")
-        
     df["label"] = labels
 
-    # Keep  text and label for training
-    labeled_df = df[["Wolaytta", "English", "label"]].rename(columns={"Wolaytta": "text"})
-    logger.info(f"Saving labeled dataset to {OUTPUT_CSV}")
+    # Save the resulting dataset
+    labeled = df[["Wolaytta", "English", "label"]].rename(columns={"Wolaytta": "text"})
     os.makedirs(os.path.dirname(OUTPUT_CSV), exist_ok=True)
-    labeled_df.to_csv(OUTPUT_CSV, index=False)
-    logger.info("Labeling completed successfully.")
+    labeled.to_csv(OUTPUT_CSV, index=False)
+    logger.info(f"✅ Sentiment-labeled data saved to {OUTPUT_CSV}")
+
 if __name__ == "__main__":
     main()
