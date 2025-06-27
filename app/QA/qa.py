@@ -33,8 +33,6 @@ TOP_K = 3
 # === Logging ===
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("QA-RAG")
-
-# === 1. Extract Text from PDF ===
 def extract_text_from_pdf(pdf_path):
     text = ""
     with fitz.open(pdf_path) as doc:
