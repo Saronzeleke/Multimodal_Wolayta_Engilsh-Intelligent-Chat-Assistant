@@ -9,8 +9,6 @@ from transformers import (
     Seq2SeqTrainer, 
     DataCollatorForSeq2Seq
 )
-
-# Paths
 DATA_PATH = "data/wolayta_summarization.csv"
 MODEL_NAME = "t5-small"
 SAVE_DIR = "models/summarization_model"
