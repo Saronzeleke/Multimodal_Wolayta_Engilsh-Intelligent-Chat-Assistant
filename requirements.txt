@@ -8,5 +8,9 @@ openai
 pandas
 numpy
 torch
-pyaudio 
+pyaudio
 playsound
+uvicorn
+faiss-cpu
+fastapi
+sentence_transformers
