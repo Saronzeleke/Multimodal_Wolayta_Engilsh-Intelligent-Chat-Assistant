@@ -70,8 +70,6 @@ trainer = Seq2SeqTrainer(
 
 # Fine-tune the model
 trainer.train()
-
-# Save model
 model.save_pretrained(SAVE_DIR)
 tokenizer.save_pretrained(SAVE_DIR)
 print(f"✅ Fine-tuned summarization model saved to {SAVE_DIR}")
