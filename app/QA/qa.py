@@ -133,8 +133,6 @@ def generate_answer(question, lang="en"):
         )
         answer_en = response.choices[0].message.content.strip()
         answer = translate(answer_en, source_lang="en", target_lang=lang) if lang != "en" else answer_en
-
-        # Save Q&A to CSV log
         os.makedirs(os.path.dirname(QA_LOG_PATH), exist_ok=True)
         with open(QA_LOG_PATH, "a", newline='', encoding="utf-8") as f:
             writer = csv.writer(f)
