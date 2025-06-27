@@ -22,8 +22,6 @@ df = df.dropna(subset=["text", "summary"])
 # Add prefix as T5 expects
 df["input"] = "summarize: " + df["text"]
 df["target"] = df["summary"]
-
-# Convert to Hugging Face Dataset
 dataset = Dataset.from_pandas(df[["input", "target"]])
 dataset = dataset.train_test_split(test_size=0.1)
 tokenizer = T5Tokenizer.from_pretrained(MODEL_NAME)
