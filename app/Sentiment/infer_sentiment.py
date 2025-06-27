@@ -2,7 +2,6 @@ import sys
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch.nn.functional as F
-# Configuration
 MODEL_DIR = "models/sentiment_model"
 LABELS = ["negative", "neutral", "positive"]
 
