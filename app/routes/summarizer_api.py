@@ -2,8 +2,6 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-
-# Initialize FastAPI router
 router = APIRouter()
 
 # Configuration
