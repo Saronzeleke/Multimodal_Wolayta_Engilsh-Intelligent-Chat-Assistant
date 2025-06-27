@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 INPUT_CSV =r"C:\Users\admin\Desktop\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\wolayta.csv"
-OUTPUT_CSV =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\wolayta_sentiment_labeled.csv"
+OUTPUT_CSV =r":\Users\admin\Desktop\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\wolayta_sentiment_labeled.csv"
 
 def main():
     logger.info(f"Loading dataset from {INPUT_CSV}")
