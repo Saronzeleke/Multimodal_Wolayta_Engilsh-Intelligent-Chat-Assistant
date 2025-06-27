@@ -3,8 +3,6 @@ from pydantic import BaseModel
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 router = APIRouter()
-
-# Configuration
 MODEL_NAME = "facebook/mbart-large-50-many-to-many-mmt"
 SRC_LANG = "en_XX"
 TGT_LANG = "en_XX"
