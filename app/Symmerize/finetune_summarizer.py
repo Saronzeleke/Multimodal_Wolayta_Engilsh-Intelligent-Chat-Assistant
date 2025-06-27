@@ -57,8 +57,6 @@ training_args = Seq2SeqTrainingArguments(
 
 # Data collator
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
-
-# Trainer
 trainer = Seq2SeqTrainer(
     model=model,
     args=training_args,
