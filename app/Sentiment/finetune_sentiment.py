@@ -28,10 +28,6 @@ def tokenize_dataset(dataset, tokenizer):
     tokenized = tokenized.rename_column("label_id", "label")
     tokenized.set_format("torch", columns=["input_ids", "attention_mask", "label"])
     return tokenized.train_test_split(test_size=0.2, seed=42)
-
-# ----------------------------
-# -- Step 3: Train the Model --
-# ----------------------------
 def train_sentiment_model():
     print("📥 Loading dataset...")
     dataset = load_dataset_from_csv(DATA_PATH)
