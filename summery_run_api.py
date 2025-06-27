@@ -15,5 +15,4 @@ def read_root():
     return {"message": "✅ Wolaytta Chat Assistant API is running."}
 
 if __name__ == "__main__":
-    # Run the app with uvicorn programmatically
     uvicorn.run("run_api:app", host="127.0.0.1", port=8000, reload=True)
