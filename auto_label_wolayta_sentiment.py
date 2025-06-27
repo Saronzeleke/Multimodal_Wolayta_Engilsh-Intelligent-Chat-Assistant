@@ -1,7 +1,7 @@
 import os
 import logging
 import pandas as pd
-from transformers import pipeline
+%pip install transformers from transformers import pipeline
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
