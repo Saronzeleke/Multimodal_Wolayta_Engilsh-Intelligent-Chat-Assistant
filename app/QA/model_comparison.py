@@ -37,12 +37,8 @@ def save_report(report_data: Dict[str, Dict], filename: str):
     """Save evaluation report as JSON and CSV summary"""
     json_path = os.path.join(REPORTS_DIR, filename + ".json")
     csv_path = os.path.join(REPORTS_DIR, filename + ".csv")
-
-    # Save JSON
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(report_data, f, indent=2)
-
-    # Save CSV summary (metric averages)
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["model_name", *list(next(iter(report_data.values())).keys())])
