@@ -4,12 +4,8 @@ from datetime import datetime
 from typing import Literal
 import logging
 FEEDBACK_LOG_PATH = "app/QA/feedback_logs.csv"
-
-# === Setup Logger ===
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("FeedbackLogger")
-
-# === Ensure log directory exists ===
 os.makedirs(os.path.dirname(FEEDBACK_LOG_PATH), exist_ok=True)
 
 # === Feedback Logging Function ===
