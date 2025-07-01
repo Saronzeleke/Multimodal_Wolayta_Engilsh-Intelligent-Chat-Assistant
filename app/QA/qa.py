@@ -1,38 +1,45 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))) 
+import pandas as pd
 import torch
 import faiss
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
 import os
-import fitz 
+import fitz
 from fastapi import FastAPI, APIRouter, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import pickle
 import csv
-from app.translation.translation import translate  
+import sys
+from app.translation.translation import translate  # <-- Now using external translation module
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")  
-PDF_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\kuye.pdf"
-EMBEDDING_CACHE_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data/embeddings.pkl"
-FAISS_INDEX_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data/faiss_index.idx"
-QA_HISTORY_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data/qa_history.pkl"
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+# === CONFIG ===
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "sk-or-...your-key...")
+PDF_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\kuye.pdf"
+EMBEDDING_CACHE_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\embeddings.pkl"
+FAISS_INDEX_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\faiss_index.idx"
+QA_HISTORY_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\qa_history.pkl"
+QA_LOG_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\qa_logs.csv"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-QA_LOG_PATH =r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data/qa_logs.csv"
 EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 TOP_K = 3
 
+# === Logging ===
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("QA-RAG")
+
+# === 1. Extract Text from PDF ===
 def extract_text_from_pdf(pdf_path):
     text = ""
     with fitz.open(pdf_path) as doc:
         for page in doc:
             text += page.get_text()
     return text
+
+# === 2. Chunk Text ===
 def chunk_text(text, chunk_size=500):
     paragraphs = text.split("\n\n")
     chunks, current = [], ""
@@ -45,10 +52,14 @@ def chunk_text(text, chunk_size=500):
     if current:
         chunks.append(current.strip())
     return chunks
+
+# === 3. Load and Chunk PDF Data ===
 logger.info("📥 Reading PDF and preparing chunks...")
 raw_text = extract_text_from_pdf(PDF_PATH)
 docs = chunk_text(raw_text)
 logger.info(f"📚 Loaded and chunked {len(docs)} segments from PDF")
+
+# === 4. Embeddings and FAISS ===
 logger.info("🔍 Generating embeddings and preparing FAISS index...")
 embedder = SentenceTransformer(EMBEDDING_MODEL)
 
@@ -67,7 +78,11 @@ else:
     index.add(embeddings)
     faiss.write_index(index, FAISS_INDEX_PATH)
     logger.info(f"✅ FAISS index built and cached with {len(docs)} chunks")
+
+# === 5. RAG Answer Generation ===
 client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
+
+# Load or initialize QA history
 if os.path.exists(QA_HISTORY_PATH):
     with open(QA_HISTORY_PATH, "rb") as f:
         qa_history = pickle.load(f)
@@ -82,6 +97,7 @@ def retrieve_chunks(question, k=TOP_K):
 def generate_answer(question, lang="en"):
     if not question.strip():
         return "Please enter a valid question."
+
     if lang != "en":
         question_en = translate(question, source_lang=lang, target_lang="en")
     else:
@@ -106,29 +122,33 @@ def generate_answer(question, lang="en"):
     """
     try:
         response = client.chat.completions.create(
-            model="mistralai/mistral-small-3.2-24b-instruct:free",
+            model="mistralai/mixtral-8x7b",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=512,
         )
         answer_en = response.choices[0].message.content.strip()
         answer = translate(answer_en, source_lang="en", target_lang=lang) if lang != "en" else answer_en
+
         os.makedirs(os.path.dirname(QA_LOG_PATH), exist_ok=True)
         with open(QA_LOG_PATH, "a", newline='', encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow([question, answer])
+
         qa_history.append({"question": question, "answer": answer, "lang": lang})
         with open(QA_HISTORY_PATH, "wb") as f:
             pickle.dump(qa_history, f)
 
         return answer
     except Exception as e:
-        logger.error(f"OpenRouter API error: {e}", exc_info=True)
-
+        logger.error(f"OpenRouter API error: {e}")
         return "❌ Failed to generate answer from OpenRouter."
+
+# === 6. FastAPI API ===
 class QuestionRequest(BaseModel):
     question: str
-    lang: str = "en" 
+    lang: str = "en"
+
 router = APIRouter()
 
 @router.post("/qa")
@@ -155,4 +175,4 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("qa:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("qa_rag_openrouter:app", host="127.0.0.1", port=8000, reload=True)
