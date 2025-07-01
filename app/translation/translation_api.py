@@ -6,7 +6,7 @@ app = FastAPI(title="Wolaytta-English Translation API")
 
 class TranslationRequest(BaseModel):
     text: str
-    source_lang: str = "auto"  # auto detect by default
+    source_lang: str = "auto" 
     target_lang: str = None    
 
 class TranslationResponse(BaseModel):
