@@ -159,4 +159,4 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("qa_rag_openrouter:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("qa:app", host="127.0.0.1", port=8000, reload=True)
