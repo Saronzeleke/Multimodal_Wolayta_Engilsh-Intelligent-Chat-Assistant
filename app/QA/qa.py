@@ -12,7 +12,7 @@ import logging
 import pickle
 import csv
 import sys
-from app.translation.translation import translate  # <-- Now using external translation module
+from app.translation.translation import translate  
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
