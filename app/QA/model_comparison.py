@@ -5,6 +5,7 @@ import logging
 import matplotlib.pyplot as plt
 from typing import List, Dict
 from eval_metrics import evaluate_all_metrics
+from eval_metrics import compute_bleu, compute_rouge, compute_meteor, compute_chrf
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ModelComparison")
