@@ -106,8 +106,6 @@ def compare_models(model_outputs: Dict[str, str]):
         model_metrics['ChrF'] = compute_chrf(pairs)
 
         report[model_name] = model_metrics
-
-    # Save report and plots
     save_report(report, "model_comparison_report")
     plot_comparison(report, "model_comparison_plot")
 
