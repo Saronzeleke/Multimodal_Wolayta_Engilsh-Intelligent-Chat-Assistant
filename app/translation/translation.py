@@ -3,7 +3,6 @@ import torch
 from typing import Optional
 
 def get_model_name(source_lang, target_lang):
-    # Add other language pairs here as needed
     if source_lang == "en" and target_lang == "am":
         return "Helsinki-NLP/opus-mt-en-am"
     elif source_lang == "am" and target_lang == "en":
