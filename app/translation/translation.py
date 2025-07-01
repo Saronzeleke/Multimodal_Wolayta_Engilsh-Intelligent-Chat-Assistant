@@ -34,9 +34,6 @@ def translate_text(text: str, source_lang: Optional[str] = None, target_lang: Op
         return ""
     if source_lang is None or source_lang == "auto":
         source_lang = detect_language(text)
-
-    # Determine target language if not provided
-    # For simplicity, we assume: if source is "en", target is "wolaytta" else "en"
     if target_lang is None:
         target_lang = "wolaytta" if source_lang == "en" else "en"
 
