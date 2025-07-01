@@ -99,10 +99,6 @@ def compare_models(model_outputs: Dict[str, str]):
         if not pairs:
             logger.warning(f"No valid data in model output file: {filepath}")
             continue
-
-        # Compute metrics using eval_metrics.py logic
-        from eval_metrics import compute_bleu, compute_rouge, compute_meteor, compute_chrf
-
         model_metrics = {}
         model_metrics['BLEU'] = compute_bleu(pairs)
         rouge_scores = compute_rouge(pairs)
