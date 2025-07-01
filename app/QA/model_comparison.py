@@ -50,9 +50,6 @@ def plot_comparison(report_data: Dict[str, Dict[str, float]], filename: str):
     """
     Generate bar plots comparing metric scores across models.
     """
-    import matplotlib.pyplot as plt
-    import numpy as np
-
     models = list(report_data.keys())
     metrics = list(next(iter(report_data.values())).keys())
     n_models = len(models)
