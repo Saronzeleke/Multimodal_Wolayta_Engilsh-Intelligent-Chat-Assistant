@@ -7,7 +7,7 @@ import torch
 from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
 from langdetect import detect, DetectorFactory
 
-DetectorFactory.seed = 0  # for reproducibility
+DetectorFactory.seed = 0
 
 LOG_FILE_PATH = os.getenv("TRANSLATION_LOG_PATH", "data/translation_logs.csv")
 
