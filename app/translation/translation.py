@@ -10,8 +10,6 @@ from langdetect import detect, DetectorFactory
 DetectorFactory.seed = 0
 
 LOG_FILE_PATH = os.getenv("TRANSLATION_LOG_PATH", "data/translation_logs.csv")
-
-# Load your fine-tuned translation model
 MODEL_NAME = "Sakuzas/t5-wolaytta-english"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
