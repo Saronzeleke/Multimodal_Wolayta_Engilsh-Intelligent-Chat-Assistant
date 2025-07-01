@@ -8,8 +8,6 @@ from eval_metrics import evaluate_all_metrics
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ModelComparison")
-
-# Directory structure with model evaluation outputs:
 MODEL_OUTPUTS_DIR = "model_outputs/"  
 REPORTS_DIR = "app/QA/reports/"
 
