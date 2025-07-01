@@ -32,8 +32,6 @@ def extract_text_from_pdf(pdf_path):
         for page in doc:
             text += page.get_text()
     return text
-
-# === 2. Chunk Text ===
 def chunk_text(text, chunk_size=500):
     paragraphs = text.split("\n\n")
     chunks, current = [], ""
