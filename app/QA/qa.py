@@ -44,8 +44,6 @@ def chunk_text(text, chunk_size=500):
     if current:
         chunks.append(current.strip())
     return chunks
-
-# === 3. Load and Chunk PDF Data ===
 logger.info("📥 Reading PDF and preparing chunks...")
 raw_text = extract_text_from_pdf(PDF_PATH)
 docs = chunk_text(raw_text)
