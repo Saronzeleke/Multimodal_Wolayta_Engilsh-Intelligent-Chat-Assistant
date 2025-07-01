@@ -1,4 +1,3 @@
-# app/translation/translation.py
 from transformers import MarianMTModel, MarianTokenizer
 import torch
 from typing import Optional
