@@ -32,8 +32,6 @@ def translate_text(text: str, source_lang: Optional[str] = None, target_lang: Op
     """
     if not text.strip():
         return ""
-
-    # Detect source language if not provided
     if source_lang is None or source_lang == "auto":
         source_lang = detect_language(text)
 
