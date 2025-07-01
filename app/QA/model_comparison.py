@@ -115,7 +115,6 @@ def compare_models(model_outputs: Dict[str, str]):
 
 
 if __name__ == "__main__":
-    # Example usage
     model_files = {
         "model_v1": "model_outputs/model_v1_output.csv",
         "model_v2": "model_outputs/model_v2_output.csv",
