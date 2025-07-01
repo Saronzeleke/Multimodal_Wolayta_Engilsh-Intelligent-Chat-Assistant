@@ -1,32 +1,41 @@
-from transformers import MarianMTModel, MarianTokenizer
-import torch
-from typing import Optional
+# app/translation/translation.py
 
-def get_model_name(source_lang, target_lang):
-    if source_lang == "en" and target_lang == "am":
-        return "Helsinki-NLP/opus-mt-en-am"
-    elif source_lang == "am" and target_lang == "en":
-        return "Helsinki-NLP/opus-mt-am-en"
-    # You can extend this logic for Wolaytta or return None
-    return None
+from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
+import logging
 
-def translate(text: str, source_lang="en", target_lang="am") -> Optional[str]:
+# Load model and tokenizer
+MODEL_NAME = "Sakuzas/t5-wolaytta-english"
+
+try:
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
+    pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+except Exception as e:
+    raise RuntimeError(f"Failed to load translation pipeline: {e}")
+
+def translate(text: str, source_lang: str = "en", target_lang: str = "woly") -> str:
+    """
+    Translate between English and Wolaytta using the fine-tuned T5 model.
+    Args:
+        text (str): Input sentence to translate.
+        source_lang (str): 'en' for English, 'woly' for Wolaytta.
+        target_lang (str): 'woly' for Wolaytta, 'en' for English.
+    Returns:
+        str: Translated sentence.
+    """
     if not text.strip():
         return ""
 
-    model_name = get_model_name(source_lang, target_lang)
-    if model_name is None:
-        return f"[No translation model available for {source_lang} → {target_lang}]"
+    if source_lang == "woly" and target_lang == "en":
+        prompt = f"translate Wolaytta to English: {text}"
+    elif source_lang == "en" and target_lang == "woly":
+        prompt = f"translate English to Wolaytta: {text}"
+    else:
+        raise ValueError(f"Unsupported translation direction: {source_lang} → {target_lang}")
 
     try:
-        tokenizer = MarianTokenizer.from_pretrained(model_name)
-        model = MarianMTModel.from_pretrained(model_name)
-        model.eval()
-
-        batch = tokenizer([text], return_tensors="pt", padding=True, truncation=True, max_length=512)
-        with torch.no_grad():
-            generated_ids = model.generate(**batch, max_length=512, num_beams=4, early_stopping=True)
-        translated = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
-        return translated
+        result = pipe(prompt, max_length=256, num_beams=4, early_stopping=True)
+        return result[0]["generated_text"]
     except Exception as e:
-        return f"[Translation error: {e}]"
+        logging.error(f"[Translation error]: {e}")
+        return "[Translation failed]"
