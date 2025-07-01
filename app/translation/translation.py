@@ -36,9 +36,6 @@ def translate_text(text: str, source_lang: Optional[str] = None, target_lang: Op
         source_lang = detect_language(text)
     if target_lang is None:
         target_lang = "wolaytta" if source_lang == "en" else "en"
-
-    # Prepare input text for your fine-tuned model
-    # Assume model expects format like: "translate {source_lang} to {target_lang}: {text}"
     input_text = f"translate {source_lang} to {target_lang}: {text}"
 
     try:
