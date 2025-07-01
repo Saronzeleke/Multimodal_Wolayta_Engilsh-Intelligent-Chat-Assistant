@@ -3,8 +3,6 @@ import os
 from datetime import datetime
 from typing import Literal
 import logging
-
-# === CONFIG ===
 FEEDBACK_LOG_PATH = "app/QA/feedback_logs.csv"
 
 # === Setup Logger ===
