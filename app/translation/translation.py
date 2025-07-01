@@ -1,5 +1,3 @@
-# app/translation/translation.py
-
 from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
 import logging
 
