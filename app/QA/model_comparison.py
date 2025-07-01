@@ -58,8 +58,6 @@ def plot_comparison(report_data: Dict[str, Dict[str, float]], filename: str):
     metrics = list(next(iter(report_data.values())).keys())
     n_models = len(models)
     n_metrics = len(metrics)
-
-    # Prepare data matrix (metrics x models)
     data_matrix = []
     for metric in metrics:
         data_matrix.append([report_data[model][metric] for model in models])
