@@ -48,8 +48,6 @@ logger.info("📥 Reading PDF and preparing chunks...")
 raw_text = extract_text_from_pdf(PDF_PATH)
 docs = chunk_text(raw_text)
 logger.info(f"📚 Loaded and chunked {len(docs)} segments from PDF")
-
-# === 4. Embeddings and FAISS ===
 logger.info("🔍 Generating embeddings and preparing FAISS index...")
 embedder = SentenceTransformer(EMBEDDING_MODEL)
 
