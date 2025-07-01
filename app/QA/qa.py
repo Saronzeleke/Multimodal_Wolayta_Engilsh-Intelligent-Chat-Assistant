@@ -66,8 +66,6 @@ else:
     index.add(embeddings)
     faiss.write_index(index, FAISS_INDEX_PATH)
     logger.info(f"✅ FAISS index built and cached with {len(docs)} chunks")
-
-# === 5. RAG Answer Generation ===
 client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
 
 # Load or initialize QA history
