@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ModelComparison")
 
 # Directory structure with model evaluation outputs:
-MODEL_OUTPUTS_DIR = "model_outputs/"  # e.g. you keep generated answers from different models here
+MODEL_OUTPUTS_DIR = "model_outputs/"  
 REPORTS_DIR = "app/QA/reports/"
 
 os.makedirs(REPORTS_DIR, exist_ok=True)
