@@ -88,9 +88,6 @@ def compare_models(model_outputs: Dict[str, str]):
     report = {}
     for model_name, filepath in model_outputs.items():
         logger.info(f"Evaluating model: {model_name}")
-        # For simplicity, here assume CSV file with columns question, answer, feedback=good
-        # In real usage, you might merge feedback or use a test set
-        # Let's just evaluate on all rows (ignoring feedback)
         pairs = []
         with open(filepath, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
