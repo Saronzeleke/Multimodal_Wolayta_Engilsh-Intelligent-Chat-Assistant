@@ -19,7 +19,7 @@ def translate(text: str, source_lang: str = "en", target_lang: str = "woly") -> 
         target_lang (str): 'woly' for Wolaytta, 'en' for English.
     Returns:
         str: Translated sentence.
-    """
+    """"""
     if not text.strip():
         return ""
 
