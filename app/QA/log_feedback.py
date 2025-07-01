@@ -36,9 +36,6 @@ def log_feedback(
     
     logger.info(f"📝 Feedback logged: {user_feedback} - {comment}")
     return {"status": "success", "message": "Feedback logged."}
-
-
-# === Optional: Standalone Test ===
 if __name__ == "__main__":
     result = log_feedback(
         question="What is the origin of the Wolaytta language?",
