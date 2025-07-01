@@ -1,7 +1,6 @@
 from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
 import logging
 
-# Load model and tokenizer
 MODEL_NAME = "Sakuzas/t5-wolaytta-english"
 
 try:
