@@ -85,14 +85,6 @@ def plot_comparison(report_data: Dict[str, Dict[str, float]], filename: str):
     logger.info(f"Saved comparison plot to {plot_path}")
 
 def compare_models(model_outputs: Dict[str, str]):
-    """
-    Run evaluation on multiple model outputs.
-
-    Args:
-        model_outputs: Dict of model_name -> file_path containing generated answers
-    Returns:
-        Dict of model_name -> metric scores dict
-    """
     report = {}
     for model_name, filepath in model_outputs.items():
         logger.info(f"Evaluating model: {model_name}")
