@@ -7,8 +7,6 @@ FEEDBACK_LOG_PATH = "app/QA/feedback_logs.csv"
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("FeedbackLogger")
 os.makedirs(os.path.dirname(FEEDBACK_LOG_PATH), exist_ok=True)
-
-# === Feedback Logging Function ===
 def log_feedback(
     question: str,
     answer: str,
