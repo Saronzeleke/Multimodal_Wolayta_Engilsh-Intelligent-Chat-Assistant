@@ -104,7 +104,7 @@ def generate_answer(question, lang="en"):
     """
     try:
         response = client.chat.completions.create(
-            model="baidu/ernie-4.5-300b-a47b",
+            model="mistralai/mistral-small-3.2-24b-instruct:free",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=512,
