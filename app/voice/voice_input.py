@@ -2,7 +2,7 @@ import speech_recognition as sr
 import os
 from typing import Optional
 
-ASR_LANGUAGE_CODE = "en-US"  # For Wolaytta, try 'am-ET' or a custom code when model is trained
+ASR_LANGUAGE_CODE = "wol-et" 
 
 
 def transcribe_audio(audio_path: str, language: str = ASR_LANGUAGE_CODE) -> Optional[str]:
