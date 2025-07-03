@@ -22,7 +22,7 @@ API_URLS = {
 if menu == "QA (Question Answering)":
     st.subheader("💬 Ask Any Question")
     question = st.text_area("Enter your question")
-    lang = st.selectbox("Select language", ["en", "am", "wo"])
+    lang = st.selectbox("Select language", ["en", "wo"])
 
     if st.button("Get Answer"):
         with st.spinner("Answering..."):
