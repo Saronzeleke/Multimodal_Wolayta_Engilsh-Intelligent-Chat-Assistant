@@ -94,7 +94,7 @@ def generate_answer(question, lang="en"):
     context = "\n\n".join(chunks)
     prompt = f"""
     You are a multilingual assistant for Wolaytta and English users.
-    Use the following CONTEXT to answer the QUESTION below.
+    Use the following CONTEXT to answer the QUESTION below. Answer carefully and concisely.don't hallucinate.
 
     CONTEXT:
     {context}
