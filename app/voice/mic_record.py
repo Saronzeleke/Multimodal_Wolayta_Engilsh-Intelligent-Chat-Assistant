@@ -1,6 +1,6 @@
 import pyaudio
 import wave
-
+from app.voice.pipline import voice_translate_pipeline
 def record_audio(output_file: str = "assets/recorded.wav", duration: int = 5, rate: int = 16000) -> None:
     chunk = 1024 
     format = pyaudio.paInt16  
