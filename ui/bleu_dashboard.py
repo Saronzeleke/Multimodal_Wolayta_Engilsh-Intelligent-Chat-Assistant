@@ -1,4 +1,4 @@
-import streamlit as st
+import ui.dashbord as st
 import pandas as pd
 import altair as alt
 import os
