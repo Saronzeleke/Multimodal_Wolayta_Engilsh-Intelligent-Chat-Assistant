@@ -13,7 +13,7 @@ import csv
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from app.translation.translation import translate_text 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "xxxxxxxxxxx")
 PDF_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\kuye.pdf"
 EMBEDDING_CACHE_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\embeddings.pkl"
 FAISS_INDEX_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\faiss_index.idx"
@@ -64,7 +64,7 @@ else:
     index.add(embeddings)
     faiss.write_index(index, FAISS_INDEX_PATH)
     logger.info(f"✅ FAISS index built and cached with {len(docs)} chunks")
-client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1 ")
+client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
 if os.path.exists(QA_HISTORY_PATH):
     with open(QA_HISTORY_PATH, "rb") as file:
         qa_history = pickle.load(file)
@@ -92,7 +92,7 @@ def generate_answer(question, lang="en"):
     context = "\n\n".join(chunks)
     prompt = f"""
     You are a multilingual assistant for Wolaytta and English users.
-    Use the following CONTEXT to answer the QUESTION below. Answer carefully and concisely.don't hallucinate.
+    Answer the QUESTION using CONTEXT if available, or your own knowledge if not.And. Answer carefully and concisely.Don't hallucinate.
 
     CONTEXT:
     {context}
