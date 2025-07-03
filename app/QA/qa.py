@@ -5,7 +5,7 @@ from openai import OpenAI
 import os
 import fitz
 from fastapi import FastAPI, APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel 
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import pickle
