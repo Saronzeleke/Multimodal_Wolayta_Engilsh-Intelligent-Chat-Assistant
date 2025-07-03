@@ -28,7 +28,7 @@ if os.path.exists(BLEU_LOG_PATH):
 else:
     st.warning("No BLEU evaluation log found.")
 
-# === Feedback Summary ===
+# Feedback Summary
 st.header("🗣️ User Feedback Summary")
 if os.path.exists(FEEDBACK_LOG_PATH):
     feedback_df = pd.read_csv(FEEDBACK_LOG_PATH, names=["timestamp", "question", "answer", "feedback", "comment"])
