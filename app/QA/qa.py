@@ -128,7 +128,6 @@ def generate_answer(question, lang="en"):
         logger.error(f"OpenRouter API error: {e}")
         return "❌ Failed to generate answer from OpenRouter."
 
-# === 6. FastAPI API ===
 class QuestionRequest(BaseModel):
     question: str
     lang: str = "en"
