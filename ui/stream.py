@@ -4,11 +4,52 @@ import os
 import pandas as pd
 from datetime import datetime
 
-st.set_page_config(page_title="Wolaytta Multimodal Assistant", layout="wide")
+st.set_page_config(
+    page_title="Wolaytta Multimodal Assistant",
+    layout="wide",
+    page_icon="🌍"
+)
+
+# === Custom Theme Styling ===
+st.markdown("""
+    <style>
+    html, body, [class*="css"]  {
+        background-color: #F9FAFB;
+        color: #212121;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .stButton>button {
+        background-color: #1E88E5;
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.4rem 1.2rem;
+    }
+    .stTextInput>div>div>input,
+    .stTextArea>div>textarea {
+        background-color: white;
+        border-radius: 0.5rem;
+    }
+    .css-1aumxhk, .css-1x8cf1d {
+        background-color: #FFFFFF;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("🌍 Wolaytta ↔ English Multimodal Intelligent Assistant")
 
 # === Sidebar Navigation ===
-menu = st.sidebar.radio("Select Module", ["QA (Question Answering)", "Translation", "Summarization", "Sentiment Analysis", "Voice Translation", "Model Comparison Dashboard", "BLEU Dashboard"])
+menu = st.sidebar.radio("📌 Select Module", [
+    "QA (Question Answering)",
+    "Translation",
+    "Summarization",
+    "Sentiment Analysis",
+    "Voice Translation",
+    "Model Comparison Dashboard",
+    "BLEU Dashboard"
+])
 
 API_URLS = {
     "qa": "http://127.0.0.1:8000/api/qa",
@@ -22,7 +63,7 @@ API_URLS = {
 if menu == "QA (Question Answering)":
     st.subheader("💬 Ask Any Question")
     question = st.text_area("Enter your question")
-    lang = st.selectbox("Select language", ["en", "wo"])
+    lang = st.selectbox("Select language", ["en", "am", "wo"])
 
     if st.button("Get Answer"):
         with st.spinner("Answering..."):
@@ -36,8 +77,8 @@ if menu == "QA (Question Answering)":
 elif menu == "Translation":
     st.subheader("🌐 Translate between English and Wolaytta")
     text = st.text_area("Enter text to translate")
-    source_lang = st.selectbox("Source Language", ["en", "wo"])
-    target_lang = st.selectbox("Target Language", ["wo", "en"])
+    source_lang = st.selectbox("Source Language", ["en", "am", "wo"])
+    target_lang = st.selectbox("Target Language", ["wo", "en", "am"])
 
     if st.button("Translate"):
         res = requests.post(API_URLS["translate"], json={"text": text, "source_lang": source_lang, "target_lang": target_lang})
