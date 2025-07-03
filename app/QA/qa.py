@@ -68,8 +68,8 @@ else:
     logger.info(f"✅ FAISS index built and cached with {len(docs)} chunks")
 client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
 if os.path.exists(QA_HISTORY_PATH):
-    with open(QA_HISTORY_PATH, "rb") as f:
-        qa_history = pickle.load(f)
+    with open(QA_HISTORY_PATH, "rb") as file:
+        qa_history = pickle.load(file)
 else:
     qa_history = []
 
