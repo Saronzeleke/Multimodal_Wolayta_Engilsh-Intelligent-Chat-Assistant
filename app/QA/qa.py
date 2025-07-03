@@ -104,7 +104,7 @@ def generate_answer(question, lang="en"):
     """
     try:
         response = client.chat.completions.create(
-            model="mistralai/mistral-7b-instruct:free",
+            model="google/gemini-2.5-flash-lite-preview-06-17",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=512,
