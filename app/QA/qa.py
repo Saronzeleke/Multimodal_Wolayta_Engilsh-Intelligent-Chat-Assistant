@@ -15,7 +15,7 @@ import sys
 from app.translation.translation import translate  
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "sk-or-...your-key...")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
 PDF_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\kuye.pdf"
 EMBEDDING_CACHE_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\embeddings.pkl"
 FAISS_INDEX_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\faiss_index.idx"
