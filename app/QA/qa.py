@@ -64,7 +64,7 @@ else:
     index.add(embeddings)
     faiss.write_index(index, FAISS_INDEX_PATH)
     logger.info(f"✅ FAISS index built and cached with {len(docs)} chunks")
-client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
+client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1 ")
 if os.path.exists(QA_HISTORY_PATH):
     with open(QA_HISTORY_PATH, "rb") as file:
         qa_history = pickle.load(file)
@@ -104,7 +104,7 @@ def generate_answer(question, lang="en"):
     """
     try:
         response = client.chat.completions.create(
-            model="mistralai/mistral-small-3.2-24b-instruct:free",
+            model="mistralai/mistral-7b-instruct:free",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=512,
