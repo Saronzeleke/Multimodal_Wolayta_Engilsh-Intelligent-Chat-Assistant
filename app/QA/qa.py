@@ -52,15 +52,15 @@ logger.info("🔍 Generating embeddings and preparing FAISS index...")
 embedder = SentenceTransformer(EMBEDDING_MODEL)
 
 if os.path.exists(EMBEDDING_CACHE_PATH) and os.path.exists(FAISS_INDEX_PATH):
-    with open(EMBEDDING_CACHE_PATH, "rb") as f:
-        embeddings = pickle.load(f)
+    with open(EMBEDDING_CACHE_PATH, "rb") as file:
+        embeddings = pickle.load(file)
     index = faiss.read_index(FAISS_INDEX_PATH)
     logger.info("✅ Loaded cached embeddings and FAISS index.")
 else:
     embeddings = embedder.encode(docs, convert_to_tensor=True).cpu().numpy()
     os.makedirs(os.path.dirname(EMBEDDING_CACHE_PATH), exist_ok=True)
-    with open(EMBEDDING_CACHE_PATH, "wb") as f:
-        pickle.dump(embeddings, f)
+    with open(EMBEDDING_CACHE_PATH, "wb") as file:
+        pickle.dump(embeddings, file)
 
     index = faiss.IndexFlatL2(embeddings.shape[1])
     index.add(embeddings)
