@@ -13,7 +13,7 @@ import csv
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from app.translation.translation import translate_text 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "xxxxxxxxxxx")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "xxxxxxxxx")
 PDF_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\kuye.pdf"
 EMBEDDING_CACHE_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\embeddings.pkl"
 FAISS_INDEX_PATH = r"C:\Users\admin\Multimodal_Wolayta_Engilsh-Intelligent-Chat-Assistant\data\faiss_index.idx"
