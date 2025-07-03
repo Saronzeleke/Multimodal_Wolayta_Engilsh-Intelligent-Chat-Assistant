@@ -82,7 +82,7 @@ def generate_answer(question, lang="en"):
         return "Please enter a valid question."
 
     if lang != "en":
-        question_en = translate(question, source_lang=lang, target_lang="en")
+        question_en = translate_text(question, source_lang=lang, target_lang="en")
     else:
         question_en = question
 
