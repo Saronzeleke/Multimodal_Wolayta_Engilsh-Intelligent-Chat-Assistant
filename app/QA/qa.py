@@ -11,7 +11,7 @@ import logging
 import pickle
 import csv
 import sys
-from app.translation.translation import translate  
+from app.translation.translation import translate_text 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
