@@ -1,7 +1,7 @@
 from gtts import gTTS
 import os
 
-def speak_text(text: str, lang: str = "am", out_path: str = "tts_output.mp3") -> None:
+def speak_text(text: str, lang: str = "wol", out_path: str = "tts_output.mp3") -> None:
     if not text.strip():
         print("[TTS] Empty input. Skipping synthesis.")
         return
