@@ -25,8 +25,6 @@ def log_feedback(
         user_id (str): ID or name of the user (optional).
     """
     timestamp = datetime.now().isoformat()
-
-    # Check and write header if file doesn't exist
     file_exists = os.path.exists(FEEDBACK_LOG_PATH)
     with open(FEEDBACK_LOG_PATH, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
