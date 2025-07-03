@@ -1,4 +1,3 @@
-import pandas as pd
 import torch
 import faiss
 from sentence_transformers import SentenceTransformer
