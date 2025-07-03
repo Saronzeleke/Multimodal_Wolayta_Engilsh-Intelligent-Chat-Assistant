@@ -14,6 +14,7 @@ MODEL_OUTPUTS_DIR = "model_outputs/"
 REPORTS_DIR = "app/QA/reports/"
 
 os.makedirs(REPORTS_DIR, exist_ok=True)
+os.makedirs(MODEL_OUTPUTS_DIR, exist_ok=True)
 
 def load_model_output(filepath: str) -> List[Dict[str, str]]:
     """
