@@ -30,4 +30,4 @@ def record_audio(output_file: str = "assets/recorded.wav", duration: int = 5, ra
     print(f"[RECORDING] Saved to {output_file}")
 if __name__ == "__main__":
     audio_path="assets/Recorded.wav"
-    voice_translate_pipline(audio_path)
+    voice_translate_pipeline(audio_path)
