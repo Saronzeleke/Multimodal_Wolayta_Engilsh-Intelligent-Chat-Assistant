@@ -104,7 +104,7 @@ def generate_answer(question, lang="en"):
     """
     try:
         response = client.chat.completions.create(
-            model="google/gemini-2.5-flash-lite-preview-06-17",
+            model="openrouter/cypher-alpha:free",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=512,
