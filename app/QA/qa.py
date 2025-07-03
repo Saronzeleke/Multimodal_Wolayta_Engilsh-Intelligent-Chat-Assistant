@@ -111,7 +111,7 @@ def generate_answer(question, lang="en"):
             max_tokens=512,
         )
         answer_en = response.choices[0].message.content.strip()
-        answer = translate(answer_en, source_lang="en", target_lang=lang) if lang != "en" else answer_en
+        answer = translate_text(answer_en, source_lang="en", target_lang=lang) if lang != "en" else answer_en
 
         os.makedirs(os.path.dirname(QA_LOG_PATH), exist_ok=True)
         with open(QA_LOG_PATH, "a", newline='', encoding="utf-8") as f:
