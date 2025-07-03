@@ -1,5 +1,3 @@
-# === FILE: app/QA/api_metrics.py ===
-
 import os
 import csv
 from fastapi import APIRouter, HTTPException
