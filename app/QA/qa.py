@@ -89,7 +89,7 @@ def generate_answer(question, lang="en"):
 
     chunks = retrieve_chunks(question_en)
     if not chunks:
-        return "Sorry, I couldn't find relevant context to answer that question."
+        return "Sorry, I couldn't find relevant context to answer this question."
 
     context = "\n\n".join(chunks)
     prompt = f"""
