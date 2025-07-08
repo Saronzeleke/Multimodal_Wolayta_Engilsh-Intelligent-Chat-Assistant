@@ -28,7 +28,7 @@ app.add_middleware(
 app.include_router(qa, prefix="/api/qa", tags=["Question Answering"])
 app.include_router(translate_endpoint, prefix="/api/translate", tags=["Translation"])
 app.include_router(summarizer_router, prefix="/api/summarize", tags=["Summarization"])
-app.include_router(voice_router, prefix="/api/voice", tags=["Voice Input/Output"])
+#app.include_router(voice_router, prefix="/api/voice", tags=["Voice Input/Output"])
 
 @app.get("/")
 def root():
