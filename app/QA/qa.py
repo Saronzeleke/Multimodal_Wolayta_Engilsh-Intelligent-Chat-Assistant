@@ -118,8 +118,8 @@ def generate_answer(question, lang="en"):
             writer.writerow([question, answer])
 
         qa_history.append({"question": question, "answer": answer, "lang": lang})
-        with open(QA_HISTORY_PATH, "wb") as f:
-            pickle.dump(qa_history, f)
+        with open(QA_HISTORY_PATH, "wb") as file:
+            pickle.dump(qa_history, file)
 
         return answer
     except Exception as e:
