@@ -7,7 +7,6 @@ from app.voice.mic_record import record_audio
 from app.QA.qa import router as qa
 from app.translation.translation_api import translate_endpoint
 from app.routes.summarizer_api import router as summarizer_router
-# You can import others like sentiment or voice here too
 import os
 source_text = "How are you today?"
 translated = translate(source_text, source_lang="en", target_lang="wolaytta")
