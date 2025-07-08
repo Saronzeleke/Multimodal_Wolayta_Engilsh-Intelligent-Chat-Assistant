@@ -18,7 +18,7 @@ app = FastAPI(title="Multimodal Wolaytta ↔ English Intelligent Assistant")
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For production, restrict this
+    # allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
